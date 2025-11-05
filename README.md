@@ -95,7 +95,10 @@ flutter run
 
 ### Deployment Options
 
-- **Vercel** (Recommended for Web): See [DEPLOYMENT.md](DEPLOYMENT.md)
+- **Vercel** (Recommended for Web): 
+  - See [VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md) for detailed Vercel deployment guide
+  - See [DEPLOYMENT.md](DEPLOYMENT.md) for general deployment instructions
+  - Test your setup: Run `test_vercel_build.sh` (Linux/Mac) or `test_vercel_build.bat` (Windows)
 - **Firebase Hosting**: Already configured in `firebase.json`
 - **GitHub Actions**: CI/CD workflow available in `.github/workflows/`
 
