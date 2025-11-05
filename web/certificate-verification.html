@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeQuest Certificate Verification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .certificate-info {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 5px solid #667eea;
+        }
+        
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .info-item:last-child {
+            border-bottom: none;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #555;
+            font-size: 16px;
+        }
+        
+        .info-value {
+            color: #333;
+            font-size: 16px;
+            text-align: right;
+            max-width: 60%;
+            word-break: break-word;
+        }
+        
+        .status {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: 600;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .verification-note {
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid #bbdefb;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .info-item {
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
+            }
+            
+            .info-value {
+                text-align: left;
+                max-width: 100%;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">CQ</div>
+        <h1>🔥 NEW VERIFICATION PAGE 🔥</h1>
+        <p class="subtitle">Certificate Verification - CodeQuest Learning Platform</p>
+        
+        <div class="status">
+            ✅ Certificate Verified Successfully
+        </div>
+        
+        <div class="certificate-info">
+            <div class="info-item">
+                <span class="info-label">Certificate ID:</span>
+                <span class="info-value" id="certificateId">Loading...</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Verification Date:</span>
+                <span class="info-value" id="verificationDate">Loading...</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Completion Date:</span>
+                <span class="info-value" id="completionDate">Loading...</span>
+            </div>
+        </div>
+        
+        <div class="verification-note">
+            <strong>Certificate Verified</strong><br>
+            This certificate has been successfully verified and is authentic.
+        </div>
+        
+        <div class="footer">
+            <p>Powered by CodeQuest Learning Platform</p>
+            <p>For support, contact: support@codequest.app</p>
+        </div>
+    </div>
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const certId = urlParams.get('cert');
+        
+        // Check if we have valid certificate data (only need certificate ID now)
+        const hasValidData = certId && certId.trim() !== '';
+        
+        // Update status based on data validity
+        const statusElement = document.querySelector('.status');
+        if (!hasValidData) {
+            statusElement.innerHTML = '⚠️ Certificate Data Incomplete';
+            statusElement.style.background = '#fff3cd';
+            statusElement.style.color = '#856404';
+            statusElement.style.border = '1px solid #ffeaa7';
+        }
+        
+        // Display certificate information
+        document.getElementById('certificateId').textContent = certId || 'Not specified';
+        document.getElementById('verificationDate').textContent = new Date().toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        
+        // Extract completion date from certificate ID
+        let completionDate = 'Not specified';
+        if (certId) {
+            const timestampMatch = certId.match(/_(\d+)$/);
+            if (timestampMatch) {
+                const timestamp = parseInt(timestampMatch[1]);
+                const date = new Date(timestamp);
+                completionDate = date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            }
+        }
+        document.getElementById('completionDate').textContent = completionDate;
+        
+        // Log verification for analytics
+        console.log('Certificate verified:', {
+            certId: certId,
+            hasValidData: hasValidData,
+            timestamp: new Date().toISOString(),
+            userAgent: navigator.userAgent,
+            referrer: document.referrer
+        });
+        
+        // Add error handling for missing elements
+        window.addEventListener('error', function(e) {
+            console.error('Certificate verification error:', e.error);
+        });
+    </script>
+</body>
+</html>

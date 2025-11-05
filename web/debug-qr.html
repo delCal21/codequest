@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Debug</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .url-test {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 4px solid #2196f3;
+        }
+        .url-test a {
+            color: #1976d2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .url-test a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QR Code URL Debug</h1>
+        <p>Test these URLs to see which one the QR code is pointing to:</p>
+        
+        <div class="url-test">
+            <h3>1. Certificate Verification (NEW - Should show only 3 items):</h3>
+            <a href="https://codequest-a5317.web.app/certificate-verification.html?cert=test123" target="_blank">
+                https://codequest-a5317.web.app/certificate-verification.html?cert=test123
+            </a>
+        </div>
+        
+        <div class="url-test">
+            <h3>2. Certificate Download (OLD - Has buttons):</h3>
+            <a href="https://codequest-a5317.web.app/certificate-download.html?cert=test123" target="_blank">
+                https://codequest-a5317.web.app/certificate-download.html?cert=test123
+            </a>
+        </div>
+        
+        <div class="url-test">
+            <h3>3. Certificate Editor (OLD - Has buttons):</h3>
+            <a href="https://codequest-a5317.web.app/certificate-editor.html?cert=test123" target="_blank">
+                https://codequest-a5317.web.app/certificate-editor.html?cert=test123
+            </a>
+        </div>
+        
+        <h2>Instructions:</h2>
+        <ol>
+            <li>Click on each URL above to see what they show</li>
+            <li>The first URL should show ONLY: Certificate ID, Verification Date, Completion Date</li>
+            <li>The other URLs will show buttons and extra content</li>
+            <li>Scan your QR code and see which page it opens</li>
+        </ol>
+    </div>
+</body>
+</html>

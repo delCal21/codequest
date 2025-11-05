@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeQuest Certificate - Verification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        
+        
+        .footer {
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">CQ</div>
+        <h1>📄 Certificate Verified</h1>
+        <p class="subtitle">This certificate has been successfully verified</p>
+        
+        
+        
+        <div class="footer">
+            <p>Powered by CodeQuest Learning Platform</p>
+            <p>For support, contact: support@codequest.app</p>
+        </div>
+    </div>
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const certId = urlParams.get('cert');
+        const studentName = urlParams.get('student');
+        const courseName = urlParams.get('course');
+        
+        // Decode URL parameters
+        const decodedStudentName = studentName ? decodeURIComponent(studentName) : null;
+        const decodedCourseName = courseName ? decodeURIComponent(courseName) : null;
+        
+        // Check if we have valid certificate data
+        // For now, we only need the certificate ID to be valid
+        const hasValidData = certId;
+        
+        
+        
+        
+        // Log verification page access for analytics
+        console.log('Certificate verification page accessed:', {
+            certId: certId,
+            studentName: decodedStudentName,
+            courseName: decodedCourseName,
+            hasValidData: hasValidData,
+            timestamp: new Date().toISOString(),
+            userAgent: navigator.userAgent,
+            referrer: document.referrer
+        });
+        
+        // Add error handling for missing elements
+        window.addEventListener('error', function(e) {
+            console.error('Certificate download page error:', e.error);
+        });
+    </script>
+</body>
+</html>

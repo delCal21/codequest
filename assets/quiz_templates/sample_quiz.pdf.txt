@@ -1,0 +1,34 @@
+1. What is the capital of France?
+A) Paris
+B) London
+C) Berlin
+D) Madrid
+Correct: A
+
+2. Which programming language is known as the "language of the web"?
+A) Java
+B) Python
+C) JavaScript
+D) C++
+Correct: C
+
+3. What does HTML stand for?
+A) Hyper Text Markup Language
+B) High Tech Modern Language
+C) Home Tool Markup Language
+D) Hyperlink and Text Markup Language
+Correct: A
+
+4. Which of the following is a JavaScript framework?
+A) Django
+B) Flask
+C) React
+D) Express
+Correct: C
+
+5. What is the primary purpose of CSS?
+A) To create databases
+B) To style web pages
+C) To write server code
+D) To create animations
+Correct: B

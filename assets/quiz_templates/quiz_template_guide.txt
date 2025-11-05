@@ -1,0 +1,96 @@
+QUIZ FILE TEMPLATE GUIDE
+========================
+
+This guide shows you how to format your Word documents or PDFs so they can be automatically converted into quiz questions.
+
+SUPPORTED FORMATS:
+- Microsoft Word (.docx)
+- PDF (.pdf) 
+- Text files (.txt)
+
+BASIC FORMAT:
+------------
+1. Write your question (can be numbered or not)
+2. List 4 options (A, B, C, D or 1, 2, 3, 4)
+3. Indicate the correct answer
+4. Repeat for next question
+
+EXAMPLE FORMATS:
+----------------
+
+FORMAT 1 - Numbered Questions:
+1. What is the capital of France?
+A) London
+B) Paris
+C) Berlin
+D) Madrid
+Correct: B
+
+2. Which planet is closest to the sun?
+A) Venus
+B) Earth
+C) Mercury
+D) Mars
+Correct: C
+
+FORMAT 2 - Lettered Questions:
+A. What does HTML stand for?
+1) Hyper Text Markup Language
+2) High Tech Modern Language
+3) Home Tool Markup Language
+4) Hyperlink and Text Markup Language
+Answer: 1
+
+B. Which programming language is known as the "language of the web"?
+1) Java
+2) Python
+3) JavaScript
+4) C++
+Answer: 3
+
+FORMAT 3 - Simple Format:
+What is 2 + 2?
+- 3
+- 4
+- 5
+- 6
+Correct: 4
+
+Which color is the sky?
+• Red
+• Blue
+• Green
+• Yellow
+Correct: Blue
+
+FORMAT 4 - Mixed Format:
+Question 1: What is the largest ocean?
+A. Atlantic
+B. Indian
+C. Pacific
+D. Arctic
+Correct Answer: C
+
+Q2: Who wrote Romeo and Juliet?
+1) Charles Dickens
+2) William Shakespeare
+3) Jane Austen
+4) Mark Twain
+Correct: 2
+
+TIPS FOR BEST RESULTS:
+---------------------
+1. Keep questions and options on separate lines
+2. Use consistent formatting (A, B, C, D or 1, 2, 3, 4)
+3. Clearly mark the correct answer with "Correct:", "Answer:", or "Correct Answer:"
+4. You can mix formats within the same document
+5. The system will automatically detect and parse your questions
+
+ADVANCED FEATURES:
+------------------
+- Upload multiple files at once
+- Choose to replace all questions or append new ones
+- Automatic question validation
+- Support for bullet points and various numbering styles
+
+The system is designed to be flexible and will work with most common quiz formats. Just write your questions naturally and the system will figure out the structure!

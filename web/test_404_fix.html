@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Fix Test - CodeQuest</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .success {
+            color: #4CAF50;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .test-button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        .test-button:hover {
+            background: #1976d2;
+        }
+        .url {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            word-break: break-all;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success">🔧 404 Error Fix Test</div>
+        
+        <p>This page tests the fallback certificate generation system when Firebase Storage files don't exist.</p>
+        
+        <div class="info">
+            <h3>Test Certificate ID:</h3>
+            <div class="url" id="testCertId">test_certificate_404_fix</div>
+        </div>
+        
+        <div class="info">
+            <h3>Test URLs:</h3>
+            <div class="url">https://codequest-a5317.web.app/certificate-download.html?cert=test_certificate_404_fix</div>
+        </div>
+        
+        <div class="info">
+            <h3>Test Fallback System:</h3>
+            <p>Click the buttons below to test the fallback certificate generation:</p>
+            <button class="test-button" onclick="testDownload('pdf')">Test PDF Download</button>
+            <button class="test-button" onclick="testDownload('word')">Test Word Download</button>
+            <button class="test-button" onclick="testDownload('text')">Test Text Download</button>
+        </div>
+        
+        <div class="info">
+            <h3>Expected Results:</h3>
+            <ul>
+                <li>✅ Should detect 404 error from Firebase Storage</li>
+                <li>✅ Should generate fallback certificate</li>
+                <li>✅ Should download certificate file</li>
+                <li>✅ Should show success message</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const testCertId = 'test_certificate_404_fix';
+        
+        function testDownload(format) {
+            console.log(`Testing ${format} download for certificate: ${testCertId}`);
+            
+            // Simulate the download process
+            const urls = {
+                pdf: `https://firebasestorage.googleapis.com/v0/b/codequest-a5317.firebasestorage.app/o/certificates%2F${testCertId}%2Fcertificate.pdf?alt=media`,
+                word: `https://firebasestorage.googleapis.com/v0/b/codequest-a5317.firebasestorage.app/o/certificates%2F${testCertId}%2Fcertificate.docx?alt=media`,
+                text: `https://firebasestorage.googleapis.com/v0/b/codequest-a5317.firebasestorage.app/o/certificates%2F${testCertId}%2Fcertificate.txt?alt=media`
+            };
+            
+            const url = urls[format];
+            console.log(`Testing URL: ${url}`);
+            
+            // Test if file exists
+            fetch(url, { method: 'HEAD' })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('✅ File exists in Firebase Storage');
+                        alert(`✅ ${format.toUpperCase()} certificate found in Firebase Storage!`);
+                    } else {
+                        console.log('❌ File not found (404), testing fallback system');
+                        alert(`❌ ${format.toUpperCase()} certificate not found (404). The fallback system should generate a certificate.`);
+                    }
+                })
+                .catch(error => {
+                    console.log('❌ Error accessing Firebase Storage:', error);
+                    alert(`❌ Error accessing Firebase Storage. The fallback system should generate a certificate.`);
+                });
+        }
+        
+        // Display test information
+        document.getElementById('testCertId').textContent = testCertId;
+        
+        console.log('404 Fix Test Page Loaded');
+        console.log('Test Certificate ID:', testCertId);
+    </script>
+</body>
+</html>

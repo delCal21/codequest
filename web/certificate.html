@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeQuest Certificate</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .certificate-info {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 5px solid #667eea;
+        }
+        
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .info-item:last-child {
+            border-bottom: none;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #555;
+            font-size: 16px;
+        }
+        
+        .info-value {
+            color: #333;
+            font-size: 16px;
+            text-align: right;
+            max-width: 60%;
+            word-break: break-word;
+        }
+        
+        .download-section {
+            background: #e8f5e8;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 2px solid #4caf50;
+        }
+        
+        .download-title {
+            color: #2e7d32;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .download-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .download-btn {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .download-btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        .download-btn.secondary {
+            background: #2196f3;
+        }
+        
+        .download-btn.secondary:hover {
+            background: #1976d2;
+        }
+        
+        .download-btn.tertiary {
+            background: #ff9800;
+        }
+        
+        .download-btn.tertiary:hover {
+            background: #f57c00;
+        }
+        
+        .loading {
+            display: none;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid #ffcdd2;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .info-item {
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
+            }
+            
+            .info-value {
+                text-align: left;
+                max-width: 100%;
+                margin-top: 5px;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .download-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">CQ</div>
+        <h1>Certificate Download</h1>
+        <p class="subtitle">CodeQuest Learning Platform</p>
+        
+        <div class="loading" id="loading">
+            Loading certificate information...
+        </div>
+        
+        <div class="error" id="error" style="display: none;">
+            <strong>Error:</strong> <span id="errorMessage"></span>
+        </div>
+        
+        <div class="certificate-info" id="certificateInfo" style="display: none;">
+            <div class="info-item">
+                <span class="info-label">Student Name:</span>
+                <span class="info-value" id="studentName">Loading...</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Course:</span>
+                <span class="info-value" id="courseName">Loading...</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Certificate ID:</span>
+                <span class="info-value" id="certificateId">Loading...</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Generated Date:</span>
+                <span class="info-value" id="generatedDate">Loading...</span>
+            </div>
+        </div>
+        
+        <div class="download-section" id="downloadSection" style="display: none;">
+            <div class="download-title">📄 Download Your Certificate</div>
+            <p style="color: #2e7d32; margin-bottom: 20px;">Choose your preferred format:</p>
+            
+            <div class="download-buttons">
+                <button class="download-btn" onclick="downloadPDF()" id="pdfBtn">
+                    📄 Download PDF
+                </button>
+                <button class="download-btn secondary" onclick="downloadWord()" id="wordBtn">
+                    📝 Download Word Document
+                </button>
+                <button class="download-btn tertiary" onclick="downloadText()" id="textBtn">
+                    📋 Download Text File
+                </button>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Powered by CodeQuest Learning Platform</p>
+            <p>For support, contact: support@codequest.app</p>
+        </div>
+    </div>
+
+    <script>
+        // Get certificate ID from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const certificateId = urlParams.get('cert');
+        
+        let certificateData = null;
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!certificateId) {
+                showError('No certificate ID provided');
+                return;
+            }
+            
+            loadCertificateData();
+        });
+        
+        // Load certificate data from Firebase
+        async function loadCertificateData() {
+            try {
+                showLoading();
+                
+                // For now, we'll extract data from the certificate ID
+                // In a real implementation, this would fetch from Firebase Firestore
+                const extractedData = extractDataFromCertificateId(certificateId);
+                
+                if (extractedData) {
+                    certificateData = extractedData;
+                    displayCertificateInfo(extractedData);
+                    showDownloadSection();
+                } else {
+                    showError('Certificate not found');
+                }
+            } catch (error) {
+                console.error('Error loading certificate:', error);
+                showError('Failed to load certificate data');
+            }
+        }
+        
+        // Extract data from certificate ID
+        function extractDataFromCertificateId(certId) {
+            try {
+                const parts = certId.split('_');
+                if (parts.length < 3) return null;
+                
+                // Remove timestamp (last part)
+                const timestamp = parts[parts.length - 1];
+                const nameParts = parts.slice(0, -1);
+                
+                // First two parts are student name
+                const studentName = nameParts.slice(0, 2).join(' ');
+                
+                // Remaining parts are course name
+                const courseName = nameParts.slice(2).join(' ').replace(/_/g, ' ');
+                
+                return {
+                    certificateId: certId,
+                    studentName: studentName,
+                    courseName: courseName,
+                    timestamp: parseInt(timestamp)
+                };
+            } catch (error) {
+                console.error('Error extracting data from certificate ID:', error);
+                return null;
+            }
+        }
+        
+        // Display certificate information
+        function displayCertificateInfo(data) {
+            document.getElementById('studentName').textContent = data.studentName;
+            document.getElementById('courseName').textContent = data.courseName;
+            document.getElementById('certificateId').textContent = data.certificateId;
+            document.getElementById('generatedDate').textContent = new Date(data.timestamp).toLocaleDateString();
+            
+            document.getElementById('certificateInfo').style.display = 'block';
+        }
+        
+        // Show loading state
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('error').style.display = 'none';
+            document.getElementById('certificateInfo').style.display = 'none';
+            document.getElementById('downloadSection').style.display = 'none';
+        }
+        
+        // Show error state
+        function showError(message) {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('error').style.display = 'block';
+            document.getElementById('errorMessage').textContent = message;
+            document.getElementById('certificateInfo').style.display = 'none';
+            document.getElementById('downloadSection').style.display = 'none';
+        }
+        
+        // Show download section
+        function showDownloadSection() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('error').style.display = 'none';
+            document.getElementById('downloadSection').style.display = 'block';
+        }
+        
+        // Download functions
+        function downloadPDF() {
+            if (!certificateData) {
+                alert('Certificate data not available');
+                return;
+            }
+            
+            // For now, redirect to Firebase Storage URL
+            // In a real implementation, this would be the actual Firebase Storage URL
+            const pdfUrl = `https://firebasestorage.googleapis.com/v0/b/codequest-a5317.firebasestorage.app/o/certificates%2F${certificateData.certificateId}%2Fcertificate.pdf?alt=media`;
+            window.open(pdfUrl, '_blank');
+        }
+        
+        function downloadWord() {
+            if (!certificateData) {
+                alert('Certificate data not available');
+                return;
+            }
+            
+            const wordUrl = `https://firebasestorage.googleapis.com/v0/b/codequest-a5317.firebasestorage.app/o/certificates%2F${certificateData.certificateId}%2Fcertificate.docx?alt=media`;
+            window.open(wordUrl, '_blank');
+        }
+        
+        function downloadText() {
+            if (!certificateData) {
+                alert('Certificate data not available');
+                return;
+            }
+            
+            const textUrl = `https://firebasestorage.googleapis.com/v0/b/codequest-a5317.firebasestorage.app/o/certificates%2F${certificateData.certificateId}%2Fcertificate.txt?alt=media`;
+            window.open(textUrl, '_blank');
+        }
+        
+        // Log certificate access for analytics
+        console.log('Certificate page accessed:', {
+            certificateId: certificateId,
+            timestamp: new Date().toISOString(),
+            userAgent: navigator.userAgent,
+            referrer: document.referrer
+        });
+    </script>
+</body>
+</html>
