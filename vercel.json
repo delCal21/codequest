@@ -4,6 +4,7 @@
   "devCommand": "flutter run -d chrome --web-port=3000",
   "installCommand": "bash install.sh",
   "framework": null,
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD ./",
   "rewrites": [
     {
       "source": "/(.*)",
