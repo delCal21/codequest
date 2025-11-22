@@ -1316,7 +1316,7 @@ class _ChallengesPageState extends State<ChallengesPage> {
                             ],
                           ),
                         ),
-                        // Table
+                        // Table without description column
                         Expanded(
                           child: SingleChildScrollView(
                             child: Column(
@@ -1336,13 +1336,6 @@ class _ChallengesPageState extends State<ChallengesPage> {
                                       columns: const [
                                         DataColumn(
                                             label: Text('Title',
-                                                style: TextStyle(
-                                                    color: Color.fromARGB(
-                                                        255, 0, 0, 0),
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 16))),
-                                        DataColumn(
-                                            label: Text('Description',
                                                 style: TextStyle(
                                                     color: Color.fromARGB(
                                                         255, 0, 0, 0),
@@ -1375,9 +1368,9 @@ class _ChallengesPageState extends State<ChallengesPage> {
                                             _courses[challenge.courseId]
                                                     ?.title ??
                                                 'Unknown';
+                                        // Removed description from the cells array
                                         final cells = [
                                           challenge.title,
-                                          challenge.description,
                                           courseName,
                                           challenge.lesson == 0
                                               ? 'Summative'
@@ -1390,7 +1383,7 @@ class _ChallengesPageState extends State<ChallengesPage> {
                                           cells: List.generate(cells.length,
                                               (colIdx) {
                                             Widget child;
-                                            if (colIdx == 4) {
+                                            if (colIdx == 3) { // Status is now at index 3
                                               final isPublished =
                                                   challenge.isPublished;
                                               String status;
