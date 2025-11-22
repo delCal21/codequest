@@ -535,18 +535,11 @@ class _AllUsersPageState extends State<AllUsersPage> {
                               return DataRow(
                                 cells: [
                                   DataCell(
-                                    GestureDetector(
-                                      onTap: () => _showStudentCourseDetails(
-                                        (user['name'] ?? 'N/A').toString(),
-                                        userId,
-                                      ),
-                                      child: Text(
-                                        (user['name'] ?? 'N/A').toString(),
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.blue,
-                                          decoration: TextDecoration.underline,
-                                        ),
+                                    Text(
+                                      (user['name'] ?? 'N/A').toString(),
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.black87,
                                       ),
                                     ),
                                   ),
